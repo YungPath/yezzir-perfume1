@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yezzir Perfume</title>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("HqMt9o6fQRy4Ibt8h"); // Your Public Key
+    })();
+
+    function sendOrder(productName, price) {
+      const customerName = prompt("Enter your full name:");
+      const customerEmail = prompt("Enter your email:");
+      const customerPhone = prompt("Enter your phone number:");
+
+      if (!customerName || !customerEmail || !customerPhone) {
+        alert("Order canceled. All fields are required.");
+        return;
+      }
+
+      const templateParams = {
+        customer_name: customerName,
+        customer_email: customerEmail,
+        customer_phone: customerPhone,
+        product_name: productName,
+        product_price: price
+      };
+
+      emailjs.send("service_86wyt9t", "template_mksiuse", templateParams)
+        .then(function(response) {
+          alert("✅ Order placed successfully! You will receive an email confirmation.");
+        }, function(error) {
+          alert("❌ Order failed. Please try again.");
+        });
+    }
+  </script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+
+    header {
+      background: #111;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 3px solid gold;
+    }
+
+    header h1 {
+      color: gold;
+      font-size: 2.5em;
+      margin: 0;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 30px;
+    }
+
+    .card {
+      background: #1a1a1a;
+      border: 2px solid gold;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      color: gold;
+      margin: 10px 0;
+    }
+
+    .price {
+      font-size: 1.2em;
+      margin: 10px 0;
+    }
+
+    .order-btn {
+      background: gold;
+      color: black;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .order-btn:hover {
+      background: white;
+      color: black;
+    }
+
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 15px;
+      border-top: 3px solid gold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Yezzir Perfume</h1>
+    <p>Luxury fragrances at your fingertips</p>
+  </header>
+
+  <section class="products">
+    <div class="card">
+      <img src="https://via.placeholder.com/250x200" alt="Perfume 1">
+      <h3>Golden Essence</h3>
+      <p class="price">$59.99</p>
+      <button class="order-btn" onclick="sendOrder('Golden Essence', '$59.99')">Order</button>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/250x200" alt="Perfume 2">
+      <h3>Midnight Noir</h3>
+      <p class="price">$79.99</p>
+      <button class="order-btn" onclick="sendOrder('Midnight Noir', '$79.99')">Order</button>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/250x200" alt="Perfume 3">
+      <h3>Royal Bloom</h3>
+      <p class="price">$69.99</p>
+      <button class="order-btn" onclick="sendOrder('Royal Bloom', '$69.99')">Order</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Yezzir Perfume | All Rights Reserved</p>
+  </footer>
+
+</body>
+</html>
